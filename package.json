@@ -1,0 +1,19 @@
+{
+  "name": "ngdemo",
+  "version": "0.0.0",
+  "description": "AngularJS and Node.js demo.",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": "",
+  "keywords": [
+    "angularjs",
+    "ng"
+  ],
+  "author": "JP Richardson",
+  "license": "MIT"
+}
