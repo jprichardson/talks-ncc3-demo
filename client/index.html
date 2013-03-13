@@ -14,13 +14,8 @@
 <h1>Hello!</h1>
 
 <div ng-app="myApp">
-  <input type="text" ng-model="data"/>
-  <div class="alert alert-{{data}}">
-    I'm an alert up in yo' face sucka!
-  </div>
-
-  <div class="alert alert-error">
-    hi code camp
+  <div ng-controller="MyCtrl">
+    <h3 class="alert alert-error">{{errorMsg}}</h3>
   </div>
 </div>
 
@@ -28,6 +23,9 @@
 <script>
 var myApp = angular.module('myApp', [])
 
+function MyCtrl ($scope) {
+  $scope.errorMsg = "run, there is a fire!!"
+}
 
 </script>
 
