@@ -3,17 +3,27 @@
 -->
 <!doctype html>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My sweet app!</title>
 
+<link rel="stylesheet" href="/vendor/bootstrap-2.3.1/css/bootstrap.css" media="screen">
 <script src="/reload/reload.js"></script>
 <script src="/vendor/angularjs-1.0.5/angular.min.js"></script>
+
 
 <h1>Hello!</h1>
 
 <div ng-app="myApp">
   <input type="text" ng-model="data"/>
-  <h3>{{data}}</h3>
+  <div class="alert alert-{{data}}">
+    I'm an alert up in yo' face sucka!
+  </div>
+
+  <div class="alert alert-error">
+    hi code camp
+  </div>
 </div>
+
 
 <script>
 var myApp = angular.module('myApp', [])
