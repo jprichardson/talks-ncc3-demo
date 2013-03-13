@@ -6,6 +6,18 @@
 <title>My sweet app!</title>
 
 <script src="/reload/reload.js"></script>
+<script src="/vendor/angularjs-1.0.5/angular.min.js"></script>
 
 <h1>Hello!</h1>
+
+<div ng-app="myApp">
+  <input type="text" ng-model="data"/>
+  <h3>{{data}}</h3>
+</div>
+
+<script>
+var myApp = angular.module('myApp', [])
+
+
+</script>
 
