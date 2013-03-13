@@ -5,6 +5,7 @@ var express = require('express')
   , path = require('path')
   , reload = require('reload')
   , cars = require('./server/api/cars')
+  , colors = require('colors')
 
 var app = express()
 
@@ -14,9 +15,9 @@ app.configure(function() {
   app.set('port', process.env.PORT || 3000)
   app.use(express.favicon())
   app.use(express.logger('dev'))
-  app.use(express.bodyParser()) //parses json, multi-part (file), url-encoded
-  app.use(app.router) //need to be explicit, (automatically adds it if you forget)
-  app.use(express.static(clientDir)) //should cache static assets
+  app.use(express.bodyParser()) 
+  app.use(app.router) 
+  app.use(express.static(clientDir)) 
 })
 
 app.configure('development', function(){
@@ -27,14 +28,21 @@ app.get('/', function(req, res) {
   res.sendfile(path.join(clientDir, 'index.html'))
 })
 
-app.get('/api/cars', cars.list) //this doesn't have to mach your dir naming scheme
+app.get('/api/cars', cars.list) 
+
+//add other methods
+app.get('/api/cars/:id', cars.read) //sometimes called 'show'
+app.post('/api/cars', cars.create)
+app.put('/api/cars/:id', cars.update)
+app.del('/api/cars/:id', cars.del)
+
 
 var server = http.createServer(app)
 
 reload(server, app)
 
 server.listen(app.get('port'), function(){
-  console.log("Web server listening on port " + app.get('port'));
+  console.log("Web server listening in %s on port %d", colors.red(process.env.NODE_ENV), app.get('port'));
 });
 
 
