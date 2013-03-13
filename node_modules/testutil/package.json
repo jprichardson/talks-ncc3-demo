@@ -1,0 +1,44 @@
+{
+  "name": "testutil",
+  "version": "0.4.0",
+  "description": "testutil contains methods to aid in automatic testing of your application.",
+  "homepage": [
+    "https://github.com/jprichardson/node-testutil"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jprichardson/node-testutil"
+  },
+  "keywords": [
+    "test",
+    "testing",
+    "utility",
+    "tdd",
+    "bdd",
+    "unit"
+  ],
+  "author": {
+    "name": "JP Richardson",
+    "email": "jprichardson@gmail.com"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/jprichardson/node-testutil/raw/master/LICENSE"
+    }
+  ],
+  "dependencies": {
+    "path-extra": "0.0.x",
+    "rimraf": "~2.0.2"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "fs-extra": "~0.3.2"
+  },
+  "main": "lib/testutil",
+  "test": "mocha test",
+  "readme": "Node.js - testutil\n=================\n\nThis module provides methods to aid in testing your Node.js apps. You probably wouldn't run this in production.\n\n\n\nInstallation\n------------\n\n    npm install testutil\n\nMake sure that you run the test script to verify that it works on your system.\n\n\n\n\n### Test Installation\n\nNavigate to the directory for the module and run: `npm test`\n\n\n\nUsage\n-----\n\n```javascript\ntestutil = require('testutil')\n```\n\n\n### Module Methods\n\n##### createTempDir()\n\nSynchronously creates a temporary directory and returns the path.\n\n```javascript\nvar dirPath = testutil.createTempDir();\n```\n\ne.g. `/tmp/tmpdir-359353928528529/`\n\n\n##### createTestDir(app)\n\nSynchronously creates a test directory and returns the path. Deletes the directory if it exsists and recreates it.\n\n```javascript\nvar dirPath = testutil.createTestDir('myapp');\n```\n\ne.g. `/tmp/test-myapp`\n\n\n##### createBuffer(size)\n\nSynchronously creates and returns a buffer of size N filled with random data.\n\n```javascript\nvar buffer = testutil.createBuffer(1024); //buffer of 1024 bytes\n```\n\n\n##### createFileWithData(size)\n\nSynchronously creates a file of size N filled with random data. The file path is returned.\n\n```javascript\nvar filepath = testutil.createFileWithData(filepath, 1024); \n```\n\n\n##### fetchTestFiles(dirPath, callback)\n\nAsynchronously fetches all of the files in a specified directory that end in `.test.coffee` or `.test.js`.\n\n```javscript\ntestutil.fetchTestFiles('test/', function(files) {\n// do something with test files\n});\n```\n\nYou might use this in conjunction with [Mocha](mocha).\n\n#### generateTestPath(name) \n\nGenerates a string that you can use for a test path.\n\n```javascript\nvar testPath = testutil.generateTestPath('test-mypackage');\nconsole.log(testPath); // /tmp/test-mypackage/2012-08-04_13-05-11\n```\n\n\n### Global Methods\n\nThis modules also creates three global methods that I use in my tests. Again, as stated up top, you shouldn't use this in production code.\n\n##### T() / F() / TTRUE() / TFALSE() / TTrue() / TFalse()\n\nI like short and concise tests. I also write everything CoffeeScript. Here are the function definitions:\n\n```coffeescript\nT = (v) -> assert(v)\nF = (v) -> assert(!v)\n```\n\nfor you JavaScript folks:\n\n```javascript\nT = function(v) { return assert(v); };\nF = function(v) { return assert(!v); };\n```\n\nMy CoffeeScript tests might look like this:\n\n```coffeescript\ndescribe 'SomeClass', ->\n  describe '- ssaySomethingNice()', ->\n    it 'should say something nice', ->\n      T saySomethingNice() == 'hello'\n      F saySomethingNice() == 'i hate you'\n```\n\neasier to visually parse than what a lot of other tests look like:\n\n```coffeescript\ndescribe 'SomeClass', ->\n  describe '- saySomethingNice()', ->\n    it 'should say something nice', ->\n      saySomethingNice().should.equal('hello')\n      assert.false(saySomethingNice(), 'i hate you')\n```\n\n\n\n\n\nLicense\n-------\n\n(The MIT License) See [LICENSE](https://github.com/jprichardson/node-testutil/blob/master/LICENSE) for details.\n\nCopyright (c) 2011-2012 JP Richardson\n\n[mocha]: http://visionmedia.github.com/mocha/\n\n\n",
+  "readmeFilename": "README.md",
+  "_id": "testutil@0.4.0",
+  "_from": "testutil@"
+}

@@ -1,0 +1,15 @@
+diff --git a/examples/test_server/config.js b/examples/test_server/config.js
+index 415e1eb..eb5c642 100644
+--- a/examples/test_server/config.js
++++ b/examples/test_server/config.js
+@@ -1,7 +1,8 @@
+ exports.config = {
+     server_opts: {
+-        sockjs_url: 'http://localhost:8080/lib/sockjs.js',
+-        websocket: true
++        sockjs_url: 'http://172.16.231.100:8080/lib/sockjs.js',
++        websocket: true,
++        log: function(){}
+     },
+ 
+     port: 8081,
