@@ -4,28 +4,23 @@
 <!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My sweet app!</title>
+<title>Super Ferrari</title>
 
 <link rel="stylesheet" href="/vendor/bootstrap-2.3.1/css/bootstrap.css" media="screen">
+<link rel="stylesheet" href="/css/style.css" media="screen">
+
 <script src="/reload/reload.js"></script>
 <script src="/vendor/angularjs-1.0.5/angular.min.js"></script>
+<script src="/vendor/angularjs-1.0.5/angular-resource.min.js"></script>
+<script src="/js/app.js"></script>
 
 
-<h1>Hello!</h1>
-
-<div ng-app="myApp">
-  <div ng-controller="MyCtrl">
-    <h3 class="alert alert-error">{{errorMsg}}</h3>
+<div ng-app="CarApp" class="containr">
+  <div ng-view>
+    <!-- partial will go here -->
   </div>
 </div>
 
 
-<script>
-var myApp = angular.module('myApp', [])
 
-function MyCtrl ($scope) {
-  $scope.errorMsg = "run, there is a fire!!"
-}
-
-</script>
 
