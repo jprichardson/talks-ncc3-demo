@@ -6,10 +6,10 @@ CarApp.config(function($routeProvider) {
     .otherwise({redirectTo: '/'})
 })
 
-CarApp.factory('Cars', function($resource) {
+CarApp.factory('CarsService', function($resource) {
   return $resource('/api/cars/:id', {id: '@id'}, {update: {method: 'PUT'}})
 })
 
-function ListCtrl ($scope, Cars) {
-  $scope.cars = Cars.query()
+function ListCtrl ($scope, CarsService) {
+  $scope.cars = CarsService.query()
 }
