@@ -1,33 +1,10 @@
 <h2>{{action}} Ferrari</h2>
 
 <form name="carform" class="form-horizontal">
-  <div class="control-group">
-    <label class="control-label" for="title">Title</label>
-    <div class="controls">
-      <input type="text" ng-model="car.title" id="title" name="title" placeholder="">
-    </div>
-  </div>
-
-  <div class="control-group">
-    <label class="control-label" for="mileage">Mileage</label>
-    <div class="controls">
-      <input type="text" ng-model="car.mileage" id="mileage" name="mileage" placeholder="">
-    </div>
-  </div>
-
-  <div class="control-group">
-    <label class="control-label" for="price">Price</label>
-    <div class="controls">
-      <input type="text" ng-model="car.price" id="price" name="price" placeholder="">
-    </div>
-  </div>
-
-  <div class="control-group">
-    <label class="control-label" for="year">Year</label>
-    <div class="controls">
-      <input type="text" ng-model="car.year" id="year" name="year" placeholder="">
-    </div>
-  </div>
+  <formfield prop="Title" ng-model="car.title"></formfield>
+  <formfield prop="Mileage" ng-model="car.mileage"></formfield>
+  <formfield prop="Price" ng-model="car.price"></formfield>
+  <formfield prop="Year" ng-model="car.year"></formfield>
 
   <div class="form-actions">
     <button ng-click="save()" class="btn btn-primary">
