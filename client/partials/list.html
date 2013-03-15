@@ -28,3 +28,10 @@
   </tr>
 </table>
 
+<div class="pagination center">
+  <ul>
+    <li ng-repeat="n in [1,pageCount] | range">
+      <a href="#" ng-click="loadPage(n)">{{n}}</a>
+    </li>
+  </ul>
+</div>

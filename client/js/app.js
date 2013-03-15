@@ -19,6 +19,28 @@ CarApp.filter('mileage', function() {
   }
 })
 
+//http://stackoverflow.com/questions/11873570/angularjs-for-loop-with-numbers-ranges
+CarApp.filter('range', function() {
+  return function(input) {
+      var lowBound, highBound;
+      switch (input.length) {
+      case 1:
+          lowBound = 0;
+          highBound = parseInt(input[0]) - 1;
+          break;
+      case 2:
+          lowBound = parseInt(input[0]);
+          highBound = parseInt(input[1]);
+          break;
+      default:
+          return input;
+      }
+      var result = [];
+      for (var i = lowBound; i <= highBound; i++)
+          result.push(i);
+      return result;
+  };
+})
 
 
 function CreateCtrl ($scope, $location, CarsService) {
@@ -30,13 +52,27 @@ function CreateCtrl ($scope, $location, CarsService) {
   }  
 }
 
-function ListCtrl ($scope, CarsService) {
+function ListCtrl ($scope, $http, CarsService) {
   var index = -1;
+
+  //for pagination and searching
+  $scope.limit = 25
+  $scope.offset = 0 //this is the same as: (current page - 1)
+  $scope.total = 0
+  $scope.pageCount = 0
 
   $scope.cars = CarsService.query()
 
   $scope.index = index; //currently selected element
   $scope.selectedId = -1; //actual id of selected car
+
+  $http.get('/api/cars/total').success(function(body) {
+    $scope.total = body.total
+    $scope.pageCount = Math.floor($scope.total / $scope.limit) 
+    if ($scope.total % $scope.limit !== 0)
+      $scope.pageCount += 1
+  })
+
 
   $scope.select = function(i) {
     $scope.index = index
@@ -49,6 +85,10 @@ function ListCtrl ($scope, CarsService) {
       CarsService.delete({id: $scope.cars[index].id})
       $scope.cars.splice(index, 1)
     }
+  }
+
+  $scope.loadPage = function (pg) {
+    
   }
 
 }

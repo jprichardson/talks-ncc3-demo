@@ -7,6 +7,7 @@ module.exports.create = create
 module.exports.read = read
 module.exports.update = update
 module.exports.del = del
+module.exports.total = total
 
 var DATA_FILE = './resources/data.json'
 if (process.env.NODE_ENV === 'test') 
@@ -75,6 +76,12 @@ function del (req, res) {
       res.json(formatRespData({}))
   })
 }
+
+function total (req, res) {
+  total = DATA.length ? DATA.length : 0
+  res.json({total: total})
+}
+
 
 
 /*******************

@@ -30,11 +30,13 @@ app.get('/', function(req, res) {
 
 app.get('/api/cars', cars.list) 
 
-//add other methods
+app.get('/api/cars/total', cars.total) //placement matters
+
 app.get('/api/cars/:id', cars.read) //sometimes called 'show'
 app.post('/api/cars', cars.create)
 app.put('/api/cars/:id', cars.update)
 app.del('/api/cars/:id', cars.del)
+
 
 
 var server = http.createServer(app)
