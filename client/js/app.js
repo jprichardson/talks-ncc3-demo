@@ -13,12 +13,24 @@ CarApp.factory('CarsService', function($resource) {
 })
 
 function ListCtrl ($scope, CarsService) {
+  var index = -1;
+
   $scope.cars = CarsService.query()
 
-  $scope.index = -1; //currently selected element
+  $scope.index = index; //currently selected element
+  $scope.selectedId = -1; //actual id of selected car
 
-  $scope.select = function(index) {
+  $scope.select = function(i) {
     $scope.index = index
+    index = i
+    $scope.selectedId = $scope.cars[index].id
+  }
+
+  $scope.delete = function() {
+    if (index >= 0) {
+      CarsService.delete({id: $scope.cars[index].id})
+      $scope.cars.splice(index, 1)
+    }
   }
 }
 
