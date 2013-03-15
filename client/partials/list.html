@@ -1,10 +1,13 @@
 
 <div class="btn-toolbar">
   <div class="btn-group">
-    <a class="btn btn-large" href="/edit/{{selectedId}}">Edit</a>
+    <a class="btn btn-large" href="/new">New</a>
   </div>
   <div class="btn-group">
-    <a class="btn btn-large btn-danger" ng-click="delete()">Delete</a>
+    <a class="btn btn-large" href="/edit/{{selectedId}}" ng-class="{disabled: index < 0}">Edit</a>
+  </div>
+  <div class="btn-group">
+    <a class="btn btn-large btn-danger" ng-click="delete()" ng-class="{disabled: index < 0}">Delete</a>
   </div>
 </div>
 

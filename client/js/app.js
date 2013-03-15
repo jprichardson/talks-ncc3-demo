@@ -2,15 +2,25 @@ var CarApp = angular.module('CarApp', ['ngResource'])
 
 CarApp.config(function($routeProvider, $locationProvider) {
   $routeProvider
-    .when('/', {controller: ListCtrl, templateUrl: '/partials/list.html'}) //<-- change to absolute
+    .when('/', {controller: ListCtrl, templateUrl: '/partials/list.html'}) 
     .when('/edit/:id', {controller: EditCtrl, templateUrl: '/partials/details.html'})
+    .when('/new', {controller: CreateCtrl, templateUrl: '/partials/details.html'})
     .otherwise({redirectTo: '/'})
-    $locationProvider.html5Mode(true) //<--- see!
+    $locationProvider.html5Mode(true)
 })
 
 CarApp.factory('CarsService', function($resource) {
   return $resource('/api/cars/:id', {id: '@id'}, {update: {method: 'PUT'}})
 })
+
+function CreateCtrl ($scope, $location, CarsService) {
+  $scope.action = 'Add'
+  $scope.save = function() {
+    CarsService.save($scope.car, function() {
+      $location.path('/')
+    })
+  }  
+}
 
 function ListCtrl ($scope, CarsService) {
   var index = -1;
