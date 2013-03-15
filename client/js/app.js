@@ -3,6 +3,7 @@ var CarApp = angular.module('CarApp', ['ngResource'])
 CarApp.config(function($routeProvider) {
   $routeProvider
     .when('/', {controller: ListCtrl, templateUrl: 'partials/list.html'})
+    .when('/edit/:id', {controller: EditCtrl, templateUrl: 'partials/details.html'})
     .otherwise({redirectTo: '/'})
 })
 
@@ -12,4 +13,26 @@ CarApp.factory('CarsService', function($resource) {
 
 function ListCtrl ($scope, CarsService) {
   $scope.cars = CarsService.query()
+
+  $scope.index = -1; //currently selected element
+
+  $scope.select = function(index) {
+    $scope.index = index
+  }
+}
+
+function EditCtrl ($scope, $location, $routeParams, CarsService) {
+  var id = $routeParams.id
+  CarsService.get({id: id}, function(resp) {
+    $scope.car = resp.content  
+  })
+  //$scope.car = CarsService.get({id: id})
+  $scope.action = "Update"
+
+
+  $scope.save = function() {
+    CarsService.update({id: id}, $scope.car, function() {
+      $location.path('/')
+    })
+  }
 }

@@ -1,18 +1,23 @@
 
+<div class="btn-toolbar">
+  <div class="btn-group">
+    <a class="btn btn-large" href="#/edit/{{index + 1}}">Edit</a>
+  </div>
+</div>
 
 <table class="table table-striped table-hover table-bordered">
   <thead>
-    <th>Type</th>
+    <th>Title</th>
     <th>Mileage</th>
     <th>Year</th>
     <th>Price</th>
   </thead>
 
-  <tr ng-repeat="car in cars">
+  <tr ng-repeat="car in cars" ng-click="select($index)" ng-class="{'info': $index == index}">
     <td>{{car.title}}</td>
     <td>{{car.mileage}}</td>
     <td>{{car.year}}</td>
     <td>{{car.price}}</td>
-    <td><img style="height: 60px" src="{{car.imgData}}"</img></td>
+    <td><img style="height: 60px; float: right;" src="{{car.imgData}}"</img></td>
   </tr>
 </table>

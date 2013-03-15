@@ -1,4 +1,4 @@
-if (!process.env.NODE_ENV) process.env.NODE_ENV='devlopment'
+if (!process.env.NODE_ENV) process.env.NODE_ENV='development'
 
 var express = require('express')
   , http = require('http')

@@ -1,0 +1,38 @@
+<h2>{{action}} Ferrari</h2>
+
+<form name="carform" class="form-horizontal">
+  <div class="control-group">
+    <label class="control-label" for="title">Title</label>
+    <div class="controls">
+      <input type="text" ng-model="car.title" id="title" name="title" placeholder="">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="mileage">Mileage</label>
+    <div class="controls">
+      <input type="text" ng-model="car.mileage" id="mileage" name="mileage" placeholder="">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="price">Price</label>
+    <div class="controls">
+      <input type="text" ng-model="car.price" id="price" name="price" placeholder="">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="year">Year</label>
+    <div class="controls">
+      <input type="text" ng-model="car.year" id="year" name="year" placeholder="">
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <button ng-click="save()" class="btn btn-primary">
+      {{action}}
+    </button>
+    <a href="/" class="btn">Cancel</a>
+  </div>
+</form>
