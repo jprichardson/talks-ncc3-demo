@@ -1,10 +1,11 @@
 var CarApp = angular.module('CarApp', ['ngResource'])
 
-CarApp.config(function($routeProvider) {
+CarApp.config(function($routeProvider, $locationProvider) {
   $routeProvider
-    .when('/', {controller: ListCtrl, templateUrl: 'partials/list.html'})
-    .when('/edit/:id', {controller: EditCtrl, templateUrl: 'partials/details.html'})
+    .when('/', {controller: ListCtrl, templateUrl: '/partials/list.html'}) //<-- change to absolute
+    .when('/edit/:id', {controller: EditCtrl, templateUrl: '/partials/details.html'})
     .otherwise({redirectTo: '/'})
+    $locationProvider.html5Mode(true) //<--- see!
 })
 
 CarApp.factory('CarsService', function($resource) {
