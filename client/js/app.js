@@ -13,6 +13,14 @@ CarApp.factory('CarsService', function($resource) {
   return $resource('/api/cars/:id', {id: '@id'}, {update: {method: 'PUT'}})
 })
 
+CarApp.filter('mileage', function() {
+  return function(input) {
+    return input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+})
+
+
+
 function CreateCtrl ($scope, $location, CarsService) {
   $scope.action = 'Add'
   $scope.save = function() {
@@ -42,6 +50,7 @@ function ListCtrl ($scope, CarsService) {
       $scope.cars.splice(index, 1)
     }
   }
+
 }
 
 function EditCtrl ($scope, $location, $routeParams, CarsService) {
