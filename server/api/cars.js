@@ -20,7 +20,10 @@ var DATA = fs.readJsonSync(DATA_FILE) //happens at server startup
  **********************/
 
 function list (req, res) {
-  res.json(_(DATA).take(25))
+  var offset = ~~req.query.offset || 0
+    , limit = ~~req.query.limit || 25
+
+  res.json(DATA.slice(offset*limit, offset*limit + limit))
 }
 
 function create (req, res) {

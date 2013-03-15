@@ -88,7 +88,8 @@ function ListCtrl ($scope, $http, CarsService) {
   }
 
   $scope.loadPage = function (pg) {
-    
+    $scope.offset = pg - 1
+    $scope.cars = CarsService.query({offset: $scope.offset, limit: $scope.limit})
   }
 
 }
