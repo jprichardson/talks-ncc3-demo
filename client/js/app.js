@@ -53,6 +53,16 @@ CarApp.directive('formfield', function() {
   }
 })
 
-
+CarApp.directive('formfield2', function() {
+  return {
+    restrict: 'E', //could be E, A, C (class), M (comment)
+    scope: {
+      prop: '@'
+    },
+    transclude: true,
+    templateUrl: 'formfield2.html',
+    replace: true
+  }
+})
 
 

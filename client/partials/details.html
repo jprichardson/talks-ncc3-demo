@@ -1,10 +1,22 @@
 <h2>{{action}} Ferrari</h2>
 
+<script type="text/ng-template" id="formfield2.html">
+  <div id="template">
+  <div class="control-group">
+    <label class="control-label" for="{{prop | lowercase}}">{{prop}}</label>
+    <div class="controls" ng-transclude>
+    </div>
+  </div>
+  </div>
+</script>
+
 <form name="carform" class="form-horizontal">
   <formfield prop="Title" ng-model="car.title"></formfield>
   <formfield prop="Mileage" ng-model="car.mileage"></formfield>
   <formfield prop="Price" ng-model="car.price"></formfield>
-  <formfield prop="Year" ng-model="car.year"></formfield>
+  <formfield2 prop="Year" ng-model="car.year">
+    <input type="text" ng-model="car.year">
+  </formfield2>
 
   <div class="form-actions">
     <button ng-click="save()" class="btn btn-primary">
